@@ -1,0 +1,9 @@
+{% for product in products %}
+<div class="gallery__item">
+    <a class="gallery__a" href="/product?id={{ product.id|escape }}">
+        <img class="gallery__img" src="/public/images/gallery_small/{{ product.image|escape }}" alt="img">
+        <p class="gallery__p">{{ product.name|escape }}</p>
+        <p class="gallery__p">{{ product.price|escape }}</p>
+    </a>
+</div>
+{% endfor %} 
