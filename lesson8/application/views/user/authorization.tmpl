@@ -1,0 +1,44 @@
+{% extends 'base.tmpl' %}
+
+{% block page %}
+
+<main class="authorisation center">
+
+<div class="authorisation">
+    <form class="authorisation__from" action="/user/signin" method="POST">
+        <h3 class="authorisation__h3">sign in</h3>
+        <p class="authorisation__p">login</p>
+        <input class="authorisation__input" type="text" name="login" placeholder="login">
+        <p class="authoristaion__p">password</p>
+        <input class="authorisation__input" type="password" name="password" placeholder="password">
+        <label>
+            <input class="authorisation__checkbox" type="checkbox" name="remember">
+            <span class="authorisation__span">remember me</span>
+        </label>
+        <input class="authorisation__submit" type="submit" value="signin">
+    </form>
+
+    <form class="authorisation__from" action="/user/signup" method="POST">
+        <h3 class="authorisation__h3">sign up</h3>
+        <p class="authorisation__p">name</p>
+        <input class="authorisation__input" type="text" name="name" placeholder="name">
+        <p class="authorisation__p">login</p>
+        <input class="authorisation__input" type="text" name="login" placeholder="login">
+        <p class="authorisation__p">email</p>
+        <input class="authorisation__input" type="email" name="email" placeholder="email">
+        <p class="authoristaion__p">password</p>
+        <input class="authorisation__input" type="password" name="password" placeholder="password">
+        <p class="authoristaion__p">repeat password</p>
+        <input class="authorisation__input" type="password" name="repeated" placeholder="password">
+        <label>
+            <input class="authorisation__checkbox" type="checkbox" name="remember">
+            <span class="authorisation__span">remember me</span>
+        </label>
+        <input class="authorisation__submit" type="submit" value="signup">
+    </form>
+</div>   
+</main>
+
+{% include 'js/authorization.js.tmpl' %}
+
+{% endblock %}

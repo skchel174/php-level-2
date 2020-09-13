@@ -1,0 +1,33 @@
+{% extends 'base.tmpl' %}
+
+{% block page %}
+
+<main class="catalog center">
+    <div class="cart">
+        <h3 class="cart__h3">CART</h3>
+        {% if products|length > 0  %}    
+            {% for product in products %}
+                <div class="cart__item">
+                    <a class="cart__itemLink" href="/product?id={{ product.product_id|escape }}">
+                        <img class="cart__img" src="/public/images/gallery_small/{{ product.image|escape }}" alt="img">
+                        <p class="cart__p">{{ product.name|escape }}</p>
+                        <p class="cart__p">{{ product.price|escape }}</p>
+                    </a>
+                    <div class="cart__count">
+                        <div class="cart__decrease" data-id="{{ product.product_id|escape }}">-</div>
+                        <div class="cart__number">{{ product.count|escape }}</div>
+                        <div class="cart__increase" data-id="{{ product.product_id|escape }}">+</div>
+                    </div>
+                    <button class="cart__remove" data-id="{{ product.product_id|escape }}">remove</button>
+                </div>
+            {% endfor %} 
+        {% endif %} 
+        <div class="cart__order">
+            <button class="cart__orderButton">make an order</button>
+        </div>
+    </div>
+</main>
+
+{% include 'js/cart.js.tmpl' %}
+
+{% endblock %}

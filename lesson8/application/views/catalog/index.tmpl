@@ -1,0 +1,23 @@
+{% extends 'base.tmpl' %}
+
+{% block page %}
+
+<div class="catalog center">
+    <div class="catalog__top">
+        {% for product in catalog.products %}
+            <div class="catalog__item">
+                <a class="catalog__a" href="/product?id={{ product.id|escape }}">
+                    <img class="catalog__img" src="/public/images/gallery_small/{{ product.image|escape }}" alt="img">
+                    <p class="catalog__p">{{ product.name|escape }}</p>
+                    <p class="catalog__p">{{ product.price|escape }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="catalog__bottom">
+        <button class="catalog__button" data-items="{{ catalog.count|escape }}">Show more products</button>
+    </div> 
+</div>
+
+{% include 'js/catalog.js.tmpl' %}
+{% endblock %}

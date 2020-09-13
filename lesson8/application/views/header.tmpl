@@ -1,0 +1,22 @@
+<header class="header">
+    <div class="header__top center">
+        <a class="header__a" href="/">GALLERY</a>
+    </div>
+    <div class="header__bottom center">
+        <nav class="nav">
+            {% for item in global.menu.nav %}
+                <a class="nav__item" href="/{{ item }}">{{ item }}</a>
+            {% endfor %}
+        </nav>
+        <div class="user">
+            <a class="user__profile" href="/user/{{ global.menu.user }}">
+                {% if global.menu.user == 'authorization' %}
+                    signin/signout
+                {% else %}
+                    {{ global.user_name }}
+                {% endif %}
+            </a>
+            <a class="user__cart" href="/{{ global.menu.cart }}">cart</a>
+        </div>
+    </div>
+</header>

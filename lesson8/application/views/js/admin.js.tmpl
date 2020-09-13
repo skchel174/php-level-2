@@ -1,0 +1,62 @@
+<script>
+    class Admin {
+        constructor() {
+            this.page = $('.admin');
+            this._setClickListener();
+            
+        }
+
+        _setClickListener() {
+            
+            this.page.bind('click', (event) => {
+                if ($(event.target).hasClass('admin__orders')) {
+                    this._getOrders();
+                }
+
+                if ($(event.target).hasClass('order__status')) {
+                    this._setOrderStatus(event.target);
+                }
+            })
+        }
+
+        _getOrders() {
+            $.ajax({
+                url: `/admin/orders`,
+                type: 'POST',
+                data: ({
+                    request: 'ajax'
+                }),
+                success: response => {
+                    $('.admin__content').html(response);
+                }
+            });
+        }
+
+        _setOrderStatus(status) {
+            let current = $(status).val();
+            let index = setInterval(() => {
+                if (current !== $(status).val()) {
+                    this._sendStatusRequest($(status).data('id'), $(status).val());
+                    clearInterval(index);
+                }
+            }, 100);
+        }
+
+        _sendStatusRequest(id, status) {
+            $.ajax({
+                url: `/admin/status`,
+                type: 'POST',
+                data: ({
+                    request: 'ajax',
+                    id: id,
+                    status: status
+                }),
+                success: () => {
+                    alert('Order status changed.')
+                }
+            });
+        }
+    }
+
+    new Admin();
+</script>

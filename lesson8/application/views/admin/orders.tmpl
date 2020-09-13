@@ -1,0 +1,21 @@
+<div class="admin__orders">
+    {% for order in orders %}
+        <div class="order">
+            <p class="order__p">{{ order.date_time|escape }}</p>
+            <select class="order__status" data-id="{{ order.id|escape }}">
+                {% for index, item in order.statuses %}
+                    <option value="{{ index|escape }}">{{ item|escape }}</option>
+                {% endfor %}    
+            </select>
+            <div class="order__products">
+            {% for product in order.products %}
+                <div class="order__product">
+                    <p class="order__p">{{ product.name|escape }}</p>
+                    <p class="order__p">{{ product.price|escape }}</p>
+                    <p class="order__p">{{ product.count|escape }}</p>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endfor %} 
+</div>

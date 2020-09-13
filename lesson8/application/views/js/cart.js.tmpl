@@ -1,0 +1,120 @@
+<script>
+    class Cart {
+        constructor() {
+            this._setEmpty();
+            this._setClickListener();
+        }
+
+        _setClickListener() {
+            $('.cart').bind('click', event => {
+                let id = $(event.target).data('id');
+
+                if ($(event.target).hasClass('cart__remove')) {
+                    this._removeProduct(id, event.target);
+                }
+
+                if ($(event.target).hasClass('cart__increase')) {
+                    this._increaseProduct(id, event.target);
+                }
+
+                if ($(event.target).hasClass('cart__decrease')) {
+                    this._decreaseProduct(id, event.target)
+                }
+
+                if ($(event.target).hasClass('cart__orderButton')) {
+                    this._makeOrder();
+                }
+            });
+        }
+
+        _removeProduct(id, elem) {
+            $.ajax({
+                    url: `/cart/remove`,
+                    type: 'GET',
+                    data: ({
+                            id: id,
+                            request: 'ajax'
+                        }),
+                    dataType: 'html',
+                    success: () => {
+                        $(elem).parent().remove();
+                        this._setEmpty();
+                    }
+                });
+        }
+
+        _increaseProduct(id, elem) {
+            $.ajax({
+                    url: `/cart/increase`,
+                    type: 'GET',
+                    data: ({
+                            id: id,
+                            request: 'ajax'
+                        }),
+                    dataType: 'html',
+                    success: () => {
+                        $(elem)[0].previousElementSibling.textContent++;
+                    }
+                });
+        }
+
+        _decreaseProduct(id, elem) {
+            if ($(event.target)[0].nextElementSibling.textContent === '1') {
+                $.ajax({
+                    url: `/cart/remove`,
+                    type: 'GET',
+                    data: ({
+                            id: id,
+                            request: 'ajax'
+                        }),
+                    dataType: 'html',
+                    success: () => {
+                        $(elem).parent().parent().remove();
+                        this._setEmpty();
+                    }
+                });
+            } else {
+                $.ajax({
+                        url: `/cart/decrease`,
+                        type: 'GET',
+                        data: ({
+                                id: id,
+                                request: 'ajax'
+                            }),
+                        dataType: 'html',
+                        success: () => {
+                            $(elem)[0].nextElementSibling.textContent--;
+                        }
+                    });
+            }
+        }
+
+        _makeOrder() {
+            $.ajax({
+                    url: `/cart/order`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: data => {
+                        // if (data.result == 'success') {
+                        //     $('.cart').children('.cart__item').each((item, elem) => {
+                        //         if (!$(elem).children().is('.cart__inOrder')) {
+                        //             $(elem).children('.cart__itemLink').after($('<a class="cart__inOrder" href="/order">in order</a>'));
+                        //         }
+                        //     });
+                        // }
+                        alert(data.message);
+                    }
+                });
+        }
+
+        _setEmpty() {
+            if ($('.cart').children('.cart__item').length === 0) {
+                $('.cart__order').remove();
+                $('.cart').append($('<p class="cart__empty">Cart is empty.</p>'));
+            }
+        } 
+    }
+
+    new Cart();
+
+</script>

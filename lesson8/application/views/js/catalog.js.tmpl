@@ -1,0 +1,36 @@
+<script>
+    class Catalog {
+        constructor() {
+            this._setClickListener();
+        }
+
+        _setClickListener() {
+            $('.catalog').bind('click', event => {
+                if ($(event.target).hasClass('catalog__button')) {
+                    this._showMoreProducts();
+                }
+            });
+        }
+
+        _showMoreProducts() {
+            $.ajax({
+                url: '/catalog/append',
+                type: 'GET',
+                data: ({
+                        lastId: $('.catalog__top').children().length,
+                        request: 'ajax'
+                    }),
+                dataType: 'html',
+                success: data => {
+                    $('.catalog__top').append(data);
+                    if ($('.catalog__top').children().length == $('.catalog__button').data('items')) {
+                        console.log('test');
+                        $('.catalog__bottom').remove();
+                    }  
+                }
+            });
+        }
+    }
+
+    new Catalog();
+</script>

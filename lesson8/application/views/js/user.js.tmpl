@@ -1,0 +1,15 @@
+<script>
+    $('.user__order').bind('click', () => {
+        $.ajax({
+                url: `/user/orders`,
+                type: 'POST',
+                data: ({
+                    request: 'ajax'
+                }),
+                success: response => {
+                    console.log(response);
+                    $('.user__content').html(response);
+                }
+            });
+    });
+</script>

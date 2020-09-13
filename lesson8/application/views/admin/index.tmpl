@@ -1,0 +1,16 @@
+{% extends 'base.tmpl' %}
+
+{% block page %}
+
+<main class="admin center">
+    <h1 class="admin__h1">Admin panel</h1>
+    <div class="admin__sidebar">
+        <button class="admin__orders">orders</button>
+        <button class="admin__catalog">catalog</button>
+    </div>
+    <div class="admin__content"></div>
+</main>
+
+{% include 'js/admin.js.tmpl' %}
+
+{% endblock %}

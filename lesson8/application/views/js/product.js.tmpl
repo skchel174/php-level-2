@@ -1,0 +1,33 @@
+<script>
+    class Product {
+        constructor() {
+            this._setClickListener();
+        }
+
+        _setClickListener() {
+            $('.product').bind('click', event => {
+                if ($(event.target).hasClass('product__add')) {
+                    this._addProductToCart(event);
+                }
+            });
+        }
+
+        _addProductToCart(event) {
+            $.ajax({
+                url: '/product/add',
+                type: 'GET',
+                data: ({
+                        id: $(event.target).data('id'),
+                        request: 'ajax'
+                    }),
+                dataType: 'html',
+                success: () => {
+                    $('.product__add').remove();
+                    $('.product').append($('<a class="product__cart" href="/cart">product in cart</a>'));
+                }
+            });
+        }
+    }
+
+    new Product();
+</script>

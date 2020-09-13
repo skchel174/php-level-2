@@ -1,0 +1,382 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.3
+-- https://www.phpmyadmin.net/
+--
+-- Хост: localhost:8889
+-- Время создания: Сен 13 2020 г., 13:32
+-- Версия сервера: 5.7.26
+-- Версия PHP: 7.4.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- База данных: `gallery`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `admins`
+--
+
+CREATE TABLE `admins` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `salt` varchar(255) NOT NULL,
+  `rights` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `admins`
+--
+
+INSERT INTO `admins` (`id`, `user_id`, `password`, `salt`, `rights`) VALUES
+(1, 29, '9cb7dc45cf7a959eb36e09b36482ad51', 'b173daa7db56ea948bd80f40a9e2cc11', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `count` int(11) NOT NULL DEFAULT '1',
+  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `product_id`, `count`, `date_time`) VALUES
+(26, 'fb74530b61dd4b8f5e7a7418c2b70277', 1, 1, '2020-09-11 06:31:49'),
+(27, '05bb70b74735970e7515f7230906069c', 1, 1, '2020-09-11 07:35:11'),
+(31, '4', 1, 2, '2020-09-11 18:12:03'),
+(33, '4', 3, 1, '2020-09-11 18:18:19'),
+(35, '29', 2, 2, '2020-09-12 16:44:24');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `catalog`
+--
+
+CREATE TABLE `catalog` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(1000) NOT NULL,
+  `price` float(10,2) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `instock` int(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `catalog`
+--
+
+INSERT INTO `catalog` (`id`, `name`, `description`, `price`, `image`, `instock`) VALUES
+(1, 'Item_1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse neque soluta ipsum dignissimos impedit hic architecto dolorem! Eius consequuntur tempore repudiandae atque inventore distinctio itaque beatae doloremque dolore expedita ratione, praesentium eligendi soluta ipsum alias.', 1500.00, 'image_1.jpg', 1),
+(2, 'Item_2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse neque soluta ipsum dignissimos impedit hic architecto dolorem! Eius consequuntur tempore repudiandae atque inventore distinctio itaque beatae doloremque dolore expedita ratione, praesentium eligendi soluta ipsum alias.', 200.00, 'image_2.jpg', 1),
+(3, 'Item_3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse neque soluta ipsum dignissimos impedit hic architecto dolorem! Eius consequuntur tempore repudiandae atque inventore distinctio itaque beatae doloremque dolore expedita ratione, praesentium eligendi soluta ipsum alias.', 499.00, 'image_3.jpg', 1),
+(4, 'Item_4', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse neque soluta ipsum dignissimos impedit hic architecto dolorem! Eius consequuntur tempore repudiandae atque inventore distinctio itaque beatae doloremque dolore expedita ratione, praesentium eligendi soluta ipsum alias.', 3500.00, 'image_4.jpg', 1),
+(5, 'Item_5', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse neque soluta ipsum dignissimos impedit hic architecto dolorem! Eius consequuntur tempore repudiandae atque inventore distinctio itaque beatae doloremque dolore expedita ratione, praesentium eligendi soluta ipsum alias.', 7000.00, 'image_5.jpg', 1),
+(6, 'Item_6', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse neque soluta ipsum dignissimos impedit hic architecto dolorem! Eius consequuntur tempore repudiandae atque inventore distinctio itaque beatae doloremque dolore expedita ratione, praesentium eligendi soluta ipsum alias.', 550.00, 'image_6.jpg', 1),
+(7, 'Item_7', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio minima tempore expedita repellat consectetur harum quod quisquam, nesciunt, sed nostrum ex possimus exercitationem cumque quae voluptatibus vitae placeat adipisci. Cumque?', 3000.00, 'image_1.jpg', 1),
+(8, 'Item_8', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio minima tempore expedita repellat consectetur harum quod quisquam, nesciunt, sed nostrum ex possimus exercitationem cumque quae voluptatibus vitae placeat adipisci. Cumque?', 150.00, 'image_2.jpg', 1),
+(9, 'Item_9', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio minima tempore expedita repellat consectetur harum quod quisquam, nesciunt, sed nostrum ex possimus exercitationem cumque quae voluptatibus vitae placeat adipisci. Cumque?', 1200.00, 'image_3.jpg', 1),
+(10, 'Item_10', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio minima tempore expedita repellat consectetur harum quod quisquam, nesciunt, sed nostrum ex possimus exercitationem cumque quae voluptatibus vitae placeat adipisci. Cumque?', 799.00, 'image_4.jpg', 1),
+(11, 'Item_11', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio minima tempore expedita repellat consectetur harum quod quisquam, nesciunt, sed nostrum ex possimus exercitationem cumque quae voluptatibus vitae placeat adipisci. Cumque?', 4200.00, 'image_5.jpg', 1),
+(12, 'Item_12', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio minima tempore expedita repellat consectetur harum quod quisquam, nesciunt, sed nostrum ex possimus exercitationem cumque quae voluptatibus vitae placeat adipisci. Cumque?', 17000.00, 'image_6.jpg', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `order`
+--
+
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `order`
+--
+
+INSERT INTO `order` (`id`, `user_id`, `date_time`, `status`) VALUES
+(4, 4, '2020-09-11 07:50:03', 2),
+(5, 4, '2020-09-11 11:02:15', 2),
+(6, 29, '2020-09-12 16:44:15', 1),
+(7, 29, '2020-09-12 16:44:32', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `order_products`
+--
+
+CREATE TABLE `order_products` (
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `count` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `order_products`
+--
+
+INSERT INTO `order_products` (`order_id`, `product_id`, `count`) VALUES
+(4, 1, 2),
+(4, 3, 1),
+(5, 2, 3),
+(6, 1, 1),
+(7, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `login` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `salt` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `login`, `password`, `salt`, `name`, `email`) VALUES
+(4, 'user', '5c0db4e7b58d3200fe3a8e0216b276f4', '4b7dcf7e44db582894b5b2a579c82de1', 'user', 'user@mail.ru'),
+(24, 'user2', 'e552dc1b8879bf1febaa7bbf233e5773', 'e2cab39e98e6152b900a93fa5480b14a', 'user2', 'user2@gmail.com'),
+(29, 'admin', '9cb7dc45cf7a959eb36e09b36482ad51', 'b173daa7db56ea948bd80f40a9e2cc11', 'admin', 'admin@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `user_sessions`
+--
+
+CREATE TABLE `user_sessions` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `session_key` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `visited_pages`
+--
+
+CREATE TABLE `visited_pages` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `page_name` varchar(255) NOT NULL,
+  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `visited_pages`
+--
+
+INSERT INTO `visited_pages` (`id`, `user_id`, `page_name`, `date_time`) VALUES
+(996, 4, '/user/signout', '2020-09-12 07:12:36'),
+(997, 29, '/user/profile', '2020-09-12 07:17:20'),
+(998, 29, '/catalog', '2020-09-12 07:35:34'),
+(999, 29, '/user/signout', '2020-09-12 07:47:40'),
+(1000, 4, '/user/profile', '2020-09-12 07:47:44'),
+(1001, 4, '/user/signout', '2020-09-12 07:47:48'),
+(1002, 29, '/user/profile', '2020-09-12 08:32:19'),
+(1003, 29, '/main', '2020-09-12 08:38:10'),
+(1004, 29, '/admin', '2020-09-12 08:39:49'),
+(1005, 29, '/admin/signin', '2020-09-12 08:40:18'),
+(1006, 29, '/admin/authorization', '2020-09-12 08:41:58'),
+(1007, 29, '/user/profile', '2020-09-12 15:47:48'),
+(1008, 29, '/admin', '2020-09-12 15:47:56'),
+(1009, 29, '/admin/authorization', '2020-09-12 15:47:56'),
+(1010, 29, '/admin/signin', '2020-09-12 15:48:01'),
+(1011, 29, '/admin/orders', '2020-09-12 16:40:41'),
+(1012, 29, '/cart', '2020-09-12 16:44:07'),
+(1013, 29, '/user/profile', '2020-09-12 16:44:08'),
+(1014, 29, '/catalog', '2020-09-12 16:44:09'),
+(1015, 29, '/product?id=1', '2020-09-12 16:44:10'),
+(1016, 29, '/cart/order', '2020-09-12 16:44:15'),
+(1017, 29, '/main', '2020-09-12 16:44:20'),
+(1018, 29, '/product?id=2', '2020-09-12 16:44:23'),
+(1019, 29, '/cart', '2020-09-12 16:44:24'),
+(1020, 29, '/user/profile', '2020-09-12 16:44:36'),
+(1021, 29, '/user/orders', '2020-09-12 16:44:39'),
+(1022, 29, '/admin', '2020-09-12 16:44:48'),
+(1023, 29, '/admin/orders', '2020-09-12 16:44:50'),
+(1024, 29, '/catalog', '2020-09-12 17:39:26'),
+(1025, 29, '/main', '2020-09-12 17:39:26'),
+(1026, 29, '/user/profile', '2020-09-12 17:39:27'),
+(1027, 29, '/cart', '2020-09-12 17:39:28'),
+(1028, 29, '/user/orders', '2020-09-13 07:07:09'),
+(1029, 29, '/admin', '2020-09-13 07:07:20'),
+(1030, 29, '/admin/orders', '2020-09-13 07:10:55'),
+(1031, 29, '/admin/status', '2020-09-13 08:09:28'),
+(1032, 29, '/user/profile', '2020-09-13 08:42:21'),
+(1033, 29, '/main', '2020-09-13 12:07:00'),
+(1034, 29, '/catalog', '2020-09-13 12:07:01'),
+(1035, 29, '/admin', '2020-09-13 12:07:04'),
+(1036, 29, '/user/profile', '2020-09-13 12:08:30'),
+(1037, 29, '/admin', '2020-09-13 12:08:36'),
+(1038, 29, '/admin/authorization', '2020-09-13 12:08:36'),
+(1039, 29, '/admin/signin', '2020-09-13 12:08:50'),
+(1040, 29, '/main', '2020-09-13 13:31:36'),
+(1041, 29, '/catalog', '2020-09-13 13:31:36'),
+(1042, 29, '/user/profile', '2020-09-13 13:31:37'),
+(1043, 29, '/cart', '2020-09-13 13:31:37');
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Индексы таблицы `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Индексы таблицы `catalog`
+--
+ALTER TABLE `catalog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `order_products`
+--
+ALTER TABLE `order_products`
+  ADD PRIMARY KEY (`order_id`,`product_id`),
+  ADD KEY `order_products_ibfk_2` (`product_id`);
+
+--
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `user_sessions`
+--
+ALTER TABLE `user_sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id_2` (`user_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Индексы таблицы `visited_pages`
+--
+ALTER TABLE `visited_pages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT для таблицы `catalog`
+--
+ALTER TABLE `catalog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT для таблицы `order`
+--
+ALTER TABLE `order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT для таблицы `user_sessions`
+--
+ALTER TABLE `user_sessions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `visited_pages`
+--
+ALTER TABLE `visited_pages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1044;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `admins`
+--
+ALTER TABLE `admins`
+  ADD CONSTRAINT `admins_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `catalog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `order_products`
+--
+ALTER TABLE `order_products`
+  ADD CONSTRAINT `order_products_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `order_products_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `catalog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `user_sessions`
+--
+ALTER TABLE `user_sessions`
+  ADD CONSTRAINT `user_sessions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `visited_pages`
+--
+ALTER TABLE `visited_pages`
+  ADD CONSTRAINT `visited_pages_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

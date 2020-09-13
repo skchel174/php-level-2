@@ -1,0 +1,23 @@
+<div class="user__orders">
+{% for order in orders %}
+    <div class="order">
+        <p class="order__p">{{ order.date_time|escape }}</p>
+        <p class="order__p">{{ order.status|escape }}</p>
+
+        <div class="order__products">
+        {% for product in order.products %}
+            <div class="order__product">
+                <a class="order__a" href="/product?id={{ product.id|escape }}">
+                    <img class="order__img" src="/public/images/gallery_small/{{ product.image|escape }}" alt="img">
+                    <p class="order__p">{{ product.name|escape }}</p>
+                    <p class="order__p">{{ product.price|escape }}</p>
+                    <p class="order__p">{{ product.count|escape }}</p>
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+
+        <p class="order__p">{{ sum|escape }}</p>
+    </div>
+{% endfor %} 
+</div>

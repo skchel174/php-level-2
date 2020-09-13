@@ -1,0 +1,32 @@
+{% extends 'base.tmpl' %}
+
+{% block page %}
+<main class="user center">
+    <h1 class="user__h1">User account</h1>
+    <div class="user__sidebar">
+        <p>Name: {{ user.name|escape }}</p>
+        <p>Login: {{ user.login|escape }}</p>
+        <p>Email: {{ user.email|escape }}</p>
+        <button class="user__order">orders</button>
+        {% if profile.admin %}
+            <a class="user__admin" href="/{{ profile.admin }}">{{ profile.admin }}</a>
+        {% endif %}
+        <a class="user__signout" href="/user/signout">signout</a>
+    </div>
+    <div class="user__main">
+        <div class="user__visitedpages">
+            {% if visited_pages|length > 0 %}
+                <ul>
+                    {% for page in visited_pages %}
+                        <li><a href="{{ page }}">{{ page }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="user__content"></div>
+    </div>
+</main>
+
+{% include 'js/user.js.tmpl' %}
+
+{% endblock %}
