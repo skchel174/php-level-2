@@ -1,0 +1,22 @@
+<script>
+    $('.user__signout').bind('click', () => {
+        $.ajax({
+                url: `/user/signout`,
+                type: 'POST',
+                success: () => {
+                    location="/authorisation";
+                }
+            });
+    });
+
+    $('.user__order').bind('click', () => {
+        $.ajax({
+                url: `/user/order`,
+                type: 'POST',
+                success: response => {
+                    console.log(response);
+                    $('.user__content').html(response);
+                }
+            });
+    });
+</script>

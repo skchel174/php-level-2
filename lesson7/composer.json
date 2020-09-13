@@ -1,0 +1,15 @@
+{
+    "require": {
+        "twig/twig": "^2.0",
+        "monolog/monolog": "^2.1"
+    },
+    "autoload" : {
+		"classmap" : [
+			"application/controllers/",
+            "application/models/",
+            "application/views/",
+            "application/core/",
+            "application/traits/"
+		]
+	}
+}

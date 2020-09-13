@@ -1,0 +1,19 @@
+{% extends 'base.tmpl' %}
+
+{% block page %}
+
+<main class="product center">
+    <img class="product__img" src="/public/images/gallery_normal/{{ product.image|escape }}" alt="img" width="400px">
+    <p class="product__p">{{ product.name|escape }}</p>
+    <p class="product__p">{{ product.description|escape }}</p>
+    <p class="product__p">&#36; {{ product.price|escape }}</p>
+    {% if status == 'incart' %}
+        <a class="product__cart" href="/cart">product in cart</a>
+    {% else %}    
+        <button class="product__add" data-id="{{ product.id|escape }}">Add to cart</button>
+    {% endif %}
+</main>
+
+{% include 'js/product.tmpl' %}
+
+{% endblock %}

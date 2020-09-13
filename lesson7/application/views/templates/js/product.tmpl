@@ -1,0 +1,16 @@
+<script>
+    $('.product__add').bind('click', event => {
+        $.ajax({
+            url: '/product/add',
+            type: 'POST',
+            data: ({product: event.target.dataset.id}),
+            dataType: 'html',
+            success: success.bind(event.target)
+        });
+    });
+
+    function success() {
+        $(this)[0].remove();
+        $('.product').append($('<a class="product__cart" href="/cart">product in cart</a>'));
+    }
+</script>

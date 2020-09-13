@@ -1,0 +1,25 @@
+<script>
+    const catalogBottom = $('.catalog__bottom');
+
+    catalogBottom.bind('click', event => {
+        if (!event.target.classList.contains('catalog__button')) {
+            return;
+        }
+
+        $.ajax({
+            url: '/catalog/show',
+            type: 'POST',
+            data: ({lastRowNum: $('.gallery')[0].childElementCount}),
+            dataType: 'html',
+            success: funcSuccess
+        });
+    });
+
+    function funcSuccess(data) {
+        $('.gallery').append(data);
+
+        if ($('.gallery')[0].childElementCount == $('.catalog__button')[0].dataset.rows) {
+            catalogBottom.html('');
+        }    
+    }
+</script>

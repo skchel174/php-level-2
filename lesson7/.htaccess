@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteBase /
+
+DirectoryIndex /public/index.php
+
+Options -Indexes
+#Options +SymLinksIfOwnerMatch
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ([a-z0-9_]*)/?([a-z0-9_]*) /?path=$1/$2 [QSA]

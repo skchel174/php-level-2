@@ -1,0 +1,19 @@
+<header class="header">
+    <div class="header__top center">
+        <a class="header__a" href="/">{{ title|upper }}</a>
+    </div>
+    <div class="header__bottom center">
+        <nav class="nav">
+            <a class="nav__item" href="/">Main</a>
+            <a class="nav__item" href="/catalog">Catalog</a>
+        </nav>
+        <div class="user">
+            {% if account %}
+                <a class=user__account href="/user">{{ account }}</a>
+            {% else %}
+                <a class="user__account" href="/authorisation">signin/signup</a>
+            {% endif %}
+            <a class="user__cart" href="/cart">cart</a>
+        </div>
+    </div>
+</header>
